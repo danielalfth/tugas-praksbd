@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Detail Mahasiswa</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="container mt-5">
+    <h2>Detail Mahasiswa</h2>
+    
+    <div class="card mb-4">
+        <div class="card-header">
+            <h5 th:text="${mahasiswa.nama}">Nama Mahasiswa</h5>
+        </div>
+        <div class="card-body">
+            <p><strong>NIM:</strong> <span th:text="${mahasiswa.nim}"></span></p>
+            <p><strong>Angkatan:</strong> <span th:text="${mahasiswa.angkatan}"></span></p>
+            <p><strong>Gender:</strong> <span th:text="${mahasiswa.gender}"></span></p>
+            <a href="/" class="btn btn-secondary">← Kembali</a>
+        </div>
+    </div>
+    
+    <h5>Data IRS & Mata Kuliah</h5>
+    <div class="table-responsive">
+        <table class="table table-striped table-bordered">
+            <thead class="thead-dark">
+                <tr>
+                    <th>IRS ID</th>
+                    <th>Kode MK</th>
+                    <th>Mata Kuliah</th>
+                    <th>SKS</th>
+                    <th>Hari</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr th:each="irs : ${irsList}">
+                    <td th:text="${irs.irsId}"></td>
+                    <td th:text="${irs.matkulId}"></td>
+                    <td th:text="${irs.matkulNama}"></td>
+                    <td th:text="${irs.sks}"></td>
+                    <td th:text="${irs.hari}"></td>
+                    <td th:text="${irs.status}"></td>
+                </tr>
+                <tr th:if="${irsList.isEmpty()}" class="table-warning">
+                    <td colspan="6" class="text-center">Belum ada data IRS</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
